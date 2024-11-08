@@ -1,0 +1,376 @@
+{
+    "zabbix_export": {
+        "version": "6.2",
+        "date": "2024-11-08T12:56:06Z",
+        "template_groups": [
+            {
+                "uuid": "e13b7741295c4407a358e9bc58ec3921",
+                "name": "eltex"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "063bd35783ae468dab12861b984d013c",
+                "template": "Eltex SBC SNMP",
+                "name": "Eltex SBC SNMP",
+                "groups": [
+                    {
+                        "name": "eltex"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "54fe3cc6fcbf40078444e042fa7f7c64",
+                        "name": "Fan Speed 1",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.35.3.0",
+                        "key": "fan.1",
+                        "units": "rpm"
+                    },
+                    {
+                        "uuid": "a43c78c1e2d943ada2f09a76be59484c",
+                        "name": "Fan Speed 2",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.35.4.0",
+                        "key": "fan.2",
+                        "units": "rpm"
+                    },
+                    {
+                        "uuid": "a66e937720564bfb85041d82fdd0ee9e",
+                        "name": "Fan Speed 3",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.35.5.0",
+                        "key": "fan.3",
+                        "units": "rpm"
+                    },
+                    {
+                        "uuid": "51d7b80d65dd4240b8541d007f36907f",
+                        "name": "Fan Speed 4",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.35.6.0",
+                        "key": "fan.4",
+                        "units": "rpm"
+                    },
+                    {
+                        "uuid": "bc6499e1763e430dab274cc7f000f8af",
+                        "name": "Free Ram",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.33.0",
+                        "key": "freeram",
+                        "units": "kb",
+                        "description": "Free space of RAM, kB"
+                    },
+                    {
+                        "uuid": "63d4137cacf94d1396853acbe52ab47f",
+                        "name": "Free Space",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.32.0",
+                        "key": "freespace",
+                        "units": "kb",
+                        "description": "Free space of disk subsystem, MB"
+                    },
+                    {
+                        "uuid": "338865e070a841b68574aa606854a40d",
+                        "name": "ICMP ping",
+                        "type": "SIMPLE",
+                        "key": "icmpping",
+                        "history": "1w",
+                        "valuemap": {
+                            "name": "Service state"
+                        }
+                    },
+                    {
+                        "uuid": "ea100721231847219a7655cd27f36697",
+                        "name": "ICMP loss",
+                        "type": "SIMPLE",
+                        "key": "icmppingloss",
+                        "history": "1w",
+                        "value_type": "FLOAT",
+                        "units": "%"
+                    },
+                    {
+                        "uuid": "bd5db9b5a51d4bbbbc052409d208412b",
+                        "name": "ICMP response time",
+                        "type": "SIMPLE",
+                        "key": "icmppingsec",
+                        "history": "1w",
+                        "value_type": "FLOAT",
+                        "units": "s"
+                    },
+                    {
+                        "uuid": "5062144d8daf42c5ac839ffa72ba4a7e",
+                        "name": "CPU utilization",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.17.8.0",
+                        "key": "system.cpu.util[sbcTopCpuUsage.0]",
+                        "history": "7d",
+                        "value_type": "FLOAT",
+                        "units": "%"
+                    },
+                    {
+                        "uuid": "d019d0d32425490fa9a055fdc9b90a90",
+                        "name": "Temperature 1",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.35.1.0",
+                        "key": "temp.1",
+                        "value_type": "FLOAT",
+                        "units": "C"
+                    },
+                    {
+                        "uuid": "a6cb8ee39e4e455f959cabc030a9f872",
+                        "name": "Temperature 2",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.35265.1.49.35.2.0",
+                        "key": "temp.2",
+                        "value_type": "FLOAT",
+                        "units": "C"
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "uuid": "06d3c8bf35cb40188cf101cd9d0b1ad3",
+                        "name": "SipDestinations discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#IFDESCR},1.3.6.1.4.1.35265.1.49.43.5.1.3]",
+                        "key": "snmp.port.descovery",
+                        "delay": "1h",
+                        "item_prototypes": [
+                            {
+                                "uuid": "30deb58b26094d14a0efdf01066d28a3",
+                                "name": "{#IFDESCR}: In Calls",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.35265.1.49.43.5.1.5.{#SNMPINDEX}",
+                                "key": "sip.destination.in[{#SNMPINDEX}]",
+                                "history": "7d",
+                                "units": "calls"
+                            },
+                            {
+                                "uuid": "e27800800e174de28bad8bf14c519a61",
+                                "name": "{#IFDESCR}: Out Calls",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.35265.1.49.43.5.1.6.{#SNMPINDEX}",
+                                "key": "sip.destination.out[{#SNMPINDEX}]",
+                                "history": "7d",
+                                "units": "calls"
+                            }
+                        ],
+                        "graph_prototypes": [
+                            {
+                                "uuid": "9af9cefb6faf4e84b4a8a3df9d256858",
+                                "name": "{#IFDESCR} active calls",
+                                "graph_items": [
+                                    {
+                                        "color": "199C0D",
+                                        "calc_fnc": "ALL",
+                                        "item": {
+                                            "host": "Eltex SBC SNMP",
+                                            "key": "sip.destination.in[{#SNMPINDEX}]"
+                                        }
+                                    },
+                                    {
+                                        "sortorder": "1",
+                                        "color": "F63100",
+                                        "calc_fnc": "ALL",
+                                        "item": {
+                                            "host": "Eltex SBC SNMP",
+                                            "key": "sip.destination.out[{#SNMPINDEX}]"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "54d5b87c67f34fabb732ed6e73065685",
+                        "name": "SipDestinationsMonitor discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#IFDESCR}, 1.3.6.1.4.1.35265.1.49.45.2.1.3]",
+                        "key": "snmp.portmonitor.descovery",
+                        "delay": "1h",
+                        "description": "SBC SIP Destination name",
+                        "item_prototypes": [
+                            {
+                                "uuid": "e3b2cd1e685f4ff18e502f9378676785",
+                                "name": "{#IFDESCR}: destination available",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.35265.1.49.45.2.1.6.{#SNMPINDEX}",
+                                "key": "sip.destination.available[{#SNMPINDEX}]",
+                                "history": "7d",
+                                "description": "SBC SIP Destination available\n0 - don't available\n1 - available (if the check is disabled then it is expected to be available)",
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "4d25929bd86c4089b32bded270a99048",
+                                        "expression": "last(/Eltex SBC SNMP/sip.destination.available[{#SNMPINDEX}])=0",
+                                        "name": "{#IFDESCR}: Down",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "DISASTER",
+                                        "description": "\u041f\u0430\u0434\u0435\u043d\u0438\u0435 SIP-\u0442\u0440\u0430\u043d\u043a\u0430 \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442 \u043d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0432\u044b\u0445\u043e\u0434\u0430 \u043f\u043e \u0433\u043e\u0440\u043e\u0434\u0441\u043a\u043e\u0439/\u043c\u0435\u0436\u0434\u0443\u0433\u043e\u0440\u043e\u0434\u043d\u0435\u0439 \u0441\u0432\u044f\u0437\u0438 \u0434\u043b\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0438\u0438"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "valuemaps": [
+                    {
+                        "uuid": "1c6fd2f77a9a4038a199d3f7b31aa0f1",
+                        "name": "Service state",
+                        "mappings": [
+                            {
+                                "value": "0",
+                                "newvalue": "Down"
+                            },
+                            {
+                                "value": "1",
+                                "newvalue": "Up"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "graphs": [
+            {
+                "uuid": "24e01ae7332d43a09ac0e7edcfc2b38e",
+                "name": "CPU utilization",
+                "ymin_type_1": "FIXED",
+                "ymax_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "color": "199C0D",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "system.cpu.util[sbcTopCpuUsage.0]"
+                        }
+                    }
+                ]
+            },
+            {
+                "uuid": "cd231358299749bfbd1ddcc8fe576d24",
+                "name": "FAN speed",
+                "ymin_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "color": "199C0D",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "fan.1"
+                        }
+                    },
+                    {
+                        "sortorder": "1",
+                        "color": "F63100",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "fan.2"
+                        }
+                    },
+                    {
+                        "sortorder": "2",
+                        "color": "2774A4",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "fan.3"
+                        }
+                    },
+                    {
+                        "sortorder": "3",
+                        "color": "F7941D",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "fan.4"
+                        }
+                    }
+                ]
+            },
+            {
+                "uuid": "c7b66431792a4bb0bdaa2996cb4f6b80",
+                "name": "Free RAM",
+                "ymin_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "color": "F63100",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "freeram"
+                        }
+                    }
+                ]
+            },
+            {
+                "uuid": "0710059011b54259ad870f582870f847",
+                "name": "Free Space",
+                "ymin_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "color": "F63100",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "freespace"
+                        }
+                    }
+                ]
+            },
+            {
+                "uuid": "b37205c7815245f8b76be460aa7216ff",
+                "name": "ICMP Ping",
+                "ymin_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "color": "F63100",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "icmpping"
+                        }
+                    }
+                ]
+            },
+            {
+                "uuid": "16fd74f9011c470e84087f4d186eb265",
+                "name": "ICMP Ping response time",
+                "ymin_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "color": "F7941D",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "icmppingsec"
+                        }
+                    }
+                ]
+            },
+            {
+                "uuid": "857db36909a742ddb7a4bcd6ae673d7a",
+                "name": "Temperature",
+                "graph_items": [
+                    {
+                        "color": "199C0D",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "temp.1"
+                        }
+                    },
+                    {
+                        "sortorder": "1",
+                        "color": "00FFBF",
+                        "calc_fnc": "ALL",
+                        "item": {
+                            "host": "Eltex SBC SNMP",
+                            "key": "temp.2"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
